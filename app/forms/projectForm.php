@@ -5,7 +5,7 @@ class projectForm
 {
     private $database;
 
-    public function __construct(Nette\Database\Connection $database)
+    public function __construct(Nette\Database\Context $database)
     {
         $this->database = $database;
     }
@@ -15,7 +15,7 @@ class projectForm
         $form = new UI\Form;
         $form->addText('name', 'Název projektu:');
         $form->addText('deadline','Datum odevzdání')->setType('date');
-        $form->addSelect('type', 'Typ projektu', array('time limited','continuous integration'));
+        $form->addSelect('type', 'Typ projektu', array('time limited' => 'time limited','continuous integration' => 'continuous integration'));
         $form->addCheckbox('web_project','Webový projekt');
         $form->addSubmit('send', 'Odeslat');
         $form->onSuccess[] = [$this, 'processForm'];
@@ -25,6 +25,6 @@ class projectForm
 
     public function processForm($form)
     {
-
+        $this->database->table('project')->insert($form->getValues());
     }
 }
