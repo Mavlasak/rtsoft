@@ -17,4 +17,7 @@ class projectModel
        return $this->database->table('project')->fetchAll(); 
     }
     
+     public function deleteProject($id){
+       return $this->database->table('project')->where('id',$id)->delete(); 
+    }
 }

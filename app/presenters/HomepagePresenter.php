@@ -33,5 +33,9 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
         $projects = $this->projectModel->getProject();
         $this->template->projects = $projects;        
     }
-    
+ 
+    public function handleDeleteProject($id)
+    {
+        $this->projectModel->deleteProject($id);        
+    }
 }
