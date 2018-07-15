@@ -3,11 +3,11 @@ use Nette\Application\UI;
 
 class projectForm
 {
-    private $database;
+    private $projectModel;
 
-    public function __construct(Nette\Database\Context $database)
+    public function __construct(projectModel $projectModel)
     {
-        $this->database = $database;
+        $this->projectModel = $projectModel;
     }
 
     public function create()
@@ -25,6 +25,6 @@ class projectForm
 
     public function processForm($form)
     {
-        $this->database->table('project')->insert($form->getValues());
-    }
+        $this->projectModel->addProject($form->getValues());
+    }   
 }

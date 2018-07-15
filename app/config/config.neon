@@ -13,4 +13,5 @@ session:
 
 services:
 	- projectForm
+	- projectModel
 	router: App\RouterFactory::createRouter

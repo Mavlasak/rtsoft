@@ -1,0 +1,19 @@
+{block content}
+<table border="solid">
+  <tr>
+    <th>id projektu</th>
+    <th>název projektu</th> 
+    <th>datum odevzdání</th>
+    <th>typ projektu</th> 
+    <th>webový projekt A/N</th>
+  </tr>
+{foreach $projects as $project}
+   <tr>
+    <td>{$project->id}</td>
+    <td>{$project->name}</td> 
+    <td>{$project->deadline|date:'j. n. Y'}</td>
+    <td>{$project->type}</td> 
+    <td>{if $project->web_project == 0} NE{else} ANO {/if}</td>
+  </tr>     
+{/foreach}
+</table>
