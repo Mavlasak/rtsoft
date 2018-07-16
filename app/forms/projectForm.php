@@ -1,5 +1,6 @@
 <?php
 use Nette\Application\UI;
+
 //use Tracy\Debugger;
 
 class projectForm
@@ -17,7 +18,7 @@ class projectForm
         $project = $this->projectModel->getProject($id);
                 
         $form = new UI\Form;        
-        $form->addText('name', 'Název projektu:')->setRequired(true);  
+        $form->addText('name', 'Název projektu:')->setRequired(true)->addRule(UI\Form::MAX_LENGTH, 'Maximální počet znaků je 32',32);  
         $form->addText('deadline','Datum odevzdání')->setType('date')->setRequired(true);
         $form->addSelect('type', 'Typ projektu', array('time limited' => 'time limited','continuous integration' => 'continuous integration'));
         $form->addCheckbox('web_project','Webový projekt');
