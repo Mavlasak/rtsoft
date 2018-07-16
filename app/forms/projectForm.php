@@ -17,8 +17,8 @@ class projectForm
         $project = $this->projectModel->getProject($id);
                 
         $form = new UI\Form;        
-        $form->addText('name', 'Název projektu:');  
-        $form->addText('deadline','Datum odevzdání')->setType('date');
+        $form->addText('name', 'Název projektu:')->setRequired(true);  
+        $form->addText('deadline','Datum odevzdání')->setType('date')->setRequired(true);
         $form->addSelect('type', 'Typ projektu', array('time limited' => 'time limited','continuous integration' => 'continuous integration'));
         $form->addCheckbox('web_project','Webový projekt');
         
