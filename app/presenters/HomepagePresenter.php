@@ -5,6 +5,7 @@ namespace App\Presenters;
 use Nette;
 use Nette\Application\UI;
 use projectModel;
+use Tracy\Debugger;
 
 class HomepagePresenter extends Nette\Application\UI\Presenter
 {
@@ -20,7 +21,7 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
 
     protected function createComponentProjectForm()
     {
-        $form = $this->projectForm->create();
+        $form = $this->projectForm->create($this->getParameter('id'));
         $form->onSuccess[] = function (UI\Form $form) {
             $this->redirect('this');
         };
@@ -30,7 +31,7 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
     
     public function renderOverview()
     {
-        $projects = $this->projectModel->getProject();
+        $projects = $this->projectModel->getProjects();
         $this->template->projects = $projects;        
     }
  
@@ -38,4 +39,10 @@ class HomepagePresenter extends Nette\Application\UI\Presenter
     {
         $this->projectModel->deleteProject($id);        
     }
+    
+     public function renderEdit($id)
+    {
+        $this->template->id = $id; 
+    }
+    
 }

@@ -10,7 +10,7 @@
   </tr>
 {foreach $projects as $project}
    <tr>
-    <td>{$project->id}</td>
+    <td><a n:href="Homepage:edit, $project->id">{$project->id}</a></td>
     <td>{$project->name}</td> 
     <td>{$project->deadline|date:'j. n. Y'}</td>
     <td>{$project->type}</td> 
